@@ -2,3 +2,5 @@ build/
 venv/
 
 *.gltf
+
+*/__pycache__/

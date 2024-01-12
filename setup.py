@@ -1,4 +1,11 @@
 from setuptools import setup
+import platform
+
+sys = platform.system()
+if sys == "Windows":
+    plat = ["win_amd64"]
+else:
+    plat = ["win_amd64", "macosx_10_9_x86_64"]
 
 setup(
     name='p3dtest',
@@ -27,7 +34,7 @@ setup(
                 'p3openal_audio',
             ],
 
-            'platforms': ['win_amd64'],
+            'platforms': plat,
         }
     }
 )
