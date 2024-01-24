@@ -2,7 +2,6 @@ from math import pi, sin, cos
 
 from direct.showbase.ShowBase import ShowBase
 from direct.task import Task
-from direct.actor.Actor import Actor
 
 from src.node1 import Node1
 from src.node2 import Node2
@@ -21,13 +20,7 @@ class MyApp(ShowBase):
 
         self.taskMgr.add(self.spinCameraTask, "SpinCameraTask")
 
-        self.animeActor = Actor("assets/multiAnim.bam")
-        # ctrl = self.animeActor.getAnimControl("Backwards")
-        self.animeActor.setPos(0, 1, 0)
-        self.animeActor.reparentTo(self.render)
-        self.animeActor.loop("Cap")
-
-        self.child = Node1("NEW NODE")
+        self.child = Node1("NEW NODE", self.render)
         self.child.path.reparentTo(self.render)
 
         self.accept("space", self.printGraph)
@@ -50,13 +43,15 @@ class MyApp(ShowBase):
         self.child.destroy()
 
         if newState == 1:
-            self.child = Node1("NEW NODE")
+            self.child = Node1("NEW NODE", self.render)
         elif newState == 2:
-            self.child = Node2("NODE 2")
+            self.child = Node2("NODE 2", self.render)
         
         self.child.path.reparentTo(self.render)
 
+def main():
+    app = MyApp()
+    app.run()
 
-
-app = MyApp()
-app.run()
+if __name__ == "__main__":
+    main()

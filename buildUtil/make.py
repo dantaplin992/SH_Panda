@@ -5,4 +5,4 @@ sys = platform.system()
 if sys == "Windows":
     os.system("ppython setup.py build_apps")
 else:
-    os.system("python setup.py build_apps")
+    os.system("python3 setup.py build_apps")

@@ -25,7 +25,8 @@ setup(
                 '**/*.png',
                 '**/*.jpg',
                 '**/*.egg',
-                '**/*.bam'
+                '**/*.bam',
+                '**/*.ttf',
             ],
 
             # Include the OpenGL renderer and OpenAL audio plug-in
