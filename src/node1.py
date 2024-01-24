@@ -10,7 +10,7 @@ class Node1(StateBase):
         child2 = NodePath('node_1_child_2')
         child2.reparentTo(self.path)
 
-        self.animeActor = Actor("assets/multiAnim.bam")
+        self.animeActor = Actor("assets/models/multiAnim.bam")
         # ctrl = self.animeActor.getAnimControl("Backwards")
         self.animeActor.setPos(0, 1, 0)
         self.animeActor.reparentTo(self.render)

@@ -6,7 +6,7 @@ from direct.task import Task
 from src.node1 import Node1
 from src.node2 import Node2
 
-from panda3d.core import PandaSystem
+from panda3d.core import *
 print("Panda version:", PandaSystem.getVersionString())
 
 class MyApp(ShowBase):
@@ -50,6 +50,13 @@ class MyApp(ShowBase):
         self.child.path.reparentTo(self.render)
 
 def main():
+    # TODO: figure out how to load from config.prc file
+    configVars="""
+    win-size 800 600
+    undecorated 1
+    """
+    loadPrcFileData("", configVars)
+
     app = MyApp()
     app.run()
 
