@@ -1,10 +1,12 @@
 from math import pi, sin, cos
+import sys
 
 from direct.showbase.ShowBase import ShowBase
 from direct.task import Task
 
-from src.node1 import Node1
-from src.node2 import Node2
+from src.State0.MovieState import MovieState
+from src.State1.MenuState import MenuState
+from src.State2.GameplayState import GameplayState
 
 from panda3d.core import *
 print("Panda version:", PandaSystem.getVersionString())
@@ -13,19 +15,17 @@ class MyApp(ShowBase):
 
     def __init__(self):
         ShowBase.__init__(self)
-        # self.scene = self.loader.loadModel("models/environment")
-        # self.scene.reparentTo(self.render)
-        # self.scene.setScale(0.25, 0.25, 0.25)
-        # self.scene.setPos(-8, 42, 0)
 
+        # example of a task
         self.taskMgr.add(self.spinCameraTask, "SpinCameraTask")
 
-        self.child = Node1("NEW NODE", self.render)
+        self.child = MenuState("State 0", self.render, self.taskMgr)
         self.child.path.reparentTo(self.render)
 
         self.accept("space", self.printGraph)
 
         self.accept("stateChangeEvent", self.changeState)
+        self.accept("quitEvent", self.quit)
         
     
     def spinCameraTask(self, task):
@@ -42,18 +42,24 @@ class MyApp(ShowBase):
     def changeState(self, newState):
         self.child.destroy()
 
-        if newState == 1:
-            self.child = Node1("NEW NODE", self.render)
-        elif newState == 2:
-            self.child = Node2("NODE 2", self.render)
-        
+        stateOptions = {
+            0: MovieState,
+            1: MenuState,
+            2: GameplayState
+        }
+        self.child = stateOptions[newState](f"State {newState}", self.render, self.taskMgr)
         self.child.path.reparentTo(self.render)
+    
+    def quit(self):
+        self.child.destroy()
+        self.ignoreAll()
+        sys.exit()
 
 def main():
     # TODO: figure out how to load from config.prc file
     configVars="""
     win-size 800 600
-    undecorated 1
+    # undecorated 1
     """
     loadPrcFileData("", configVars)
 

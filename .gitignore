@@ -1,6 +1,6 @@
 build/
 venv/
 
-*.gltf
+**.gltf
 
-*/__pycache__/
+**/__pycache__/
