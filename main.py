@@ -17,23 +17,28 @@ class MyApp(ShowBase):
         ShowBase.__init__(self)
 
         # example of a task
-        self.taskMgr.add(self.spinCameraTask, "SpinCameraTask")
+        # self.taskMgr.add(self.spinCameraTask, "SpinCameraTask")
 
         self.child = MenuState("State 0", self.render, self.taskMgr)
         self.child.path.reparentTo(self.render)
+
+        base.disableMouse()
+        base.camera.setPos(3, -20, 2)
+        base.camera.lookAt(0, 0, 0)
 
         self.accept("space", self.printGraph)
 
         self.accept("stateChangeEvent", self.changeState)
         self.accept("quitEvent", self.quit)
         
-    
-    def spinCameraTask(self, task):
-        angleDegrees = task.time * 6.0
-        angleRadians = angleDegrees * (pi / 180.0)
-        self.camera.setPos(20 * sin(angleRadians), -20 * cos(angleRadians), 3)
-        self.camera.setHpr(angleDegrees, 0, 0)
-        return Task.cont
+    # KEEPING THIS AS AN EXAMPLE OF ROTATING THE CAMERA
+    #
+    # def spinCameraTask(self, task):
+    #     angleDegrees = task.time * 6.0
+    #     angleRadians = angleDegrees * (pi / 180.0)
+    #     self.camera.setPos(20 * sin(angleRadians), -20 * cos(angleRadians), 3)
+    #     self.camera.setHpr(angleDegrees, 0, 0)
+    #     return Task.cont
     
     def printGraph(self):
         print(self.render.ls())
