@@ -4,7 +4,7 @@ from src.Font import Font
 class MenuTitle():
     def __init__(self, text):
         self.textObject = TextNode("text node")
-        self.textObject.setFont(Font.lora_500())
+        self.textObject.setFont(Font.lora_400())
         self.textObject.setText(text)
         self.textObject.setAlign(TextNode.ACenter)
         # self.textObject.setShadow(0.05, 0.05)
@@ -18,3 +18,4 @@ class MenuTitle():
 
     def destroy(self):
         self.textNodePath.removeNode()
+

@@ -4,7 +4,7 @@ from src.Font import Font
 class MenuButton():
     def __init__(self, text, scale, pos):
         self.textObject = TextNode("button text")
-        self.textObject.setFont(Font.lora_500())
+        self.textObject.setFont(Font.lora_400())
         self.textObject.setText(text)
         self.textObject.setAlign(TextNode.ACenter)
         # self.textObject.setShadow(0.05, 0.05)
@@ -26,3 +26,4 @@ class MenuButton():
         
     def destroy(self):
         self.textNodePath.removeNode()
+

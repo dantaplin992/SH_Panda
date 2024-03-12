@@ -7,6 +7,8 @@ class StateBase(DirectObject.DirectObject):
         self.path = NodePath(self.name)
         self.render = render
         self.taskMgr = taskMgr
+
+        # WARN: need to remove this - for debugging only
         self.accept("a", self.confirm)
     
     def destroy(self):
@@ -17,5 +19,7 @@ class StateBase(DirectObject.DirectObject):
     def sendChangeStateEvent(self, newState):
         messenger.send("stateChangeEvent", [newState])
     
+    # WARN: need to remove this - for debugging only
     def confirm(self):
         print(f"{self.name} still exists")
+
