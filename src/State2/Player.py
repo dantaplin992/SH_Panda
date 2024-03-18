@@ -7,6 +7,7 @@ class Player():
 
         self.walkSpeed = 5
 
+        # self.animeActor = Actor("assets/models/gits.bam")
         self.animeActor = Actor("assets/models/multiAnim.bam")
         self.animeActor.reparentTo(render)
         self.capCtrl = self.animeActor.getAnimControl("Cap")

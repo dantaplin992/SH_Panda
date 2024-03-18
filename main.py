@@ -16,7 +16,8 @@ class MyApp(ShowBase):
     def __init__(self):
         ShowBase.__init__(self)
 
-        # example of a task
+        # EXAMPLE OF A TASK
+        #
         # self.taskMgr.add(self.spinCameraTask, "SpinCameraTask")
 
         self.child = MenuState("State 0", self.render, self.taskMgr)
@@ -25,6 +26,19 @@ class MyApp(ShowBase):
         base.disableMouse()
         base.camera.setPos(3, -20, 2)
         base.camera.lookAt(0, 0, 0)
+
+        alight = AmbientLight('alight')
+        alight.setColor((1, 1, 1, 1))
+        alnp = self.render.attachNewNode(alight)
+        self.render.setLight(alnp)
+
+        # DIRECTIONAL LIGHT - UNUSED
+        #
+        # dlight = DirectionalLight('dlight')
+        # dlight.setColor((0.8, 0.8, 0.5, 1))
+        # dlnp = self.render.attachNewNode(dlight)
+        # dlnp.setHpr(0, -60, 0)
+        # self.render.setLight(dlnp)
 
         self.accept("space", self.printGraph)
 
@@ -62,9 +76,11 @@ class MyApp(ShowBase):
 
 def main():
     # TODO: figure out how to load from config.prc file
+    # TODO: pass win-size into command-line args or read from prefs file if it exists
     configVars="""
     win-size 800 600
     # undecorated 1
+    framebuffer-srgb true
     """
     loadPrcFileData("", configVars)
 
